@@ -34,3 +34,27 @@ header {
     border-style: solid;
     border-width: 1px;
 }
+
+.quickPic {
+    height:auto;
+    width:auto;
+}
+
+.lowIndex{
+    background-color: green;
+}
+
+.medIndex{
+    background-color: yellow;
+}
+
+.highIndex{
+    background-color: red;
+}
+
+.currentUVIndex {
+    padding: 2px;
+    border-radius: 25%;
+    border-style: solid;
+    border-width: 1px;
+}

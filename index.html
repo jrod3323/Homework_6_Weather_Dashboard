@@ -20,7 +20,9 @@
                 <form>
                     <div class="form-group">
                     <label for="searchedCity">City Name</label>
-                    <input type="text" class="form-control" id="searchedCity">
+                    <input type="text" class="form-control" id="searchedCity" placeholder="i.e Austin">
+                    <label for="searchedState">State</label>
+                    <input type="text" class="form-control" id="searchedState" placeholder="i.e Texas">
                     </div>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </form>
@@ -42,11 +44,13 @@
             <div class="infoContainer row col-med-6 col-lg-9 p-2 m-2">
                 <div class="jumbotron jumbotron-fluid col-12">
                     <div class="ml-4">
-                    <h1 class="display-4">City</h1>
-                    <p>Temp</p>
-                    <p>Humidity</p>
-                    <p>Wind Speed</p>
-                    <p>UV Index</p>
+                    <div>
+                        <h1 class="display-4 currentCity"></h1>
+                        <img class="quickPic">
+                    </div>
+                    <p >Temp: <span class="currentTemp"></span></p>
+                    <p >Wind Speed: <span class="currentWindSpeed"></span></p>
+                    <p >UV Index: <span class="currentUVIndex"></span></p>
                     </div>
                 </div>
                     <div class="row d-flex col-12 justify-content-around">
