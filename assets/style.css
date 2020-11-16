@@ -1,0 +1,36 @@
+header {
+    text-align: center;
+    color: white;
+    background-color: rgb(51, 49, 49);
+    padding: .5rem;
+}
+
+.searchContainer {
+    background-color: rgb(235, 230, 230);
+    border-radius: 2%;
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.card {
+    background-color: blue;
+}
+
+.card .list-group-item {
+    background-color: blue;
+    border-style: none;
+    color: white;
+}
+.cardDate {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.jumbotron {
+    background-color: white;
+    border-radius: 1%;
+    border: black;
+    border-style: solid;
+    border-width: 1px;
+}
