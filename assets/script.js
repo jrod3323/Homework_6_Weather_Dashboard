@@ -54,6 +54,41 @@ function pullData(event){
     var lon = response.city.coord.lon;
     console.log(lon);
 
+        // Fill In 5 Day Forecast
+    //////////////////////////
+    //Fill in Dates
+    for(var i=0;i<5;i++){
+        //loops through dates
+        var dateCalc = moment().add(i,"d");
+        var date = dateCalc.format("L");
+        //create card div
+        var card = $("<div>");
+        card.addClass("card col-2");
+        //create UL
+        var ul = $("<ul>");
+        ul.addClass("list-group list-group-flush");
+        //create date li element
+        var cardDate = $("<li>");
+        cardDate.text(date);
+        cardDate.addClass("list-group-item cardDate");
+        
+        ///////////////////////////////////////////////////////
+        //pull daily quickPic
+        var dailyQuickPic = response.list[0].weather[0].icon ;
+        var dailyQuickPicURL = `http://openweathermap.org/img/wn/${dailyQuickPic}@2x.png`
+        console.log(dailyQuickPicURL)
+        var dailyPic = $("<li>")
+        dailyPic.addClass("list-group-item")
+        var dailyPicImg = $("<img>");
+        dailyPicImg.attr("src",dailyQuickPicURL);
+        dailyPic.append(dailyPicImg);
+        //append to Dom
+        $(".fiveDayCards").append(card);
+        card.append(ul);
+        ul.append(cardDate,dailyPic);
+        //////////////////////////////////////////////////////
+    }
+
     var indexURL = `http:////api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=4a4e7e38b950e4866fbd81200ca3d5cb`;
     $.ajax({
         url: indexURL,
@@ -74,39 +109,7 @@ function pullData(event){
         }
         });
     });
-    // Fill In 5 Day Forecast
-    //////////////////////////
-    //Fill in Dates
-    for(var i=0;i<5;i++){
-        //loops through dates
-        var dateCalc = moment().add(i,"d");
-        var date = dateCalc.format("L");
-        //create card div
-        var card = $("<div>");
-        card.addClass("card col-2");
-        //create UL
-        var ul = $("<ul>");
-        ul.addClass("list-group list-group-flush");
-        //create date li element
-        var cardDate = $("<li>");
-        cardDate.text(date);
-        cardDate.addClass("list-group-item cardDate");
-        
-        ///////////////////////////////////////////////////////
-        //pull daily quickPic
-        var dailyQuickPic = response.list[(i*8)].weather.icon ;
-        var dailyQuickPicURL = `http://openweathermap.org/img/wn/${dailyQuickPic}@2x.png`
-        console.log(dailyQuickPicURL)
-        var dailyPic = $("<li>")
-        var dailyPicImg = $("<img>");
-        dailyPicImg.attr("src",dailyQuickPicURL);
-        dailyPic.append(dailyPicImg);
-        //append to Dom
-        $(".fiveDayCards").append(card);
-        card.append(ul);
-        ul.append(cardDate,dailyPic);
-        //////////////////////////////////////////////////////
-    }
+
 
 }
 
