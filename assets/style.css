@@ -61,3 +61,7 @@ header {
 .noInfo {
     text-align: center;
 }
+
+.cityList li:hover {
+    cursor: pointer;
+}
