@@ -30,7 +30,7 @@ function pullData(event){
     //Add City to most recent
     localStorage.setItem("mostRecentSearch", cityState);
     // api URL
-    var queryURL =  "http://api.openweathermap.org/data/2.5/forecast?q="+cityState+"&appid=4a4e7e38b950e4866fbd81200ca3d5cb";
+    var queryURL =  "https://api.openweathermap.org/data/2.5/forecast?q="+cityState+"&appid=4a4e7e38b950e4866fbd81200ca3d5cb";
     // Ajax call to API
     $.ajax({
     url: queryURL,
@@ -44,7 +44,7 @@ function pullData(event){
    
     var quickPic = response.list[0].weather[0].icon
     console.log(quickPic);
-    var quickPicURL = `http://openweathermap.org/img/wn/${quickPic}@2x.png`
+    var quickPicURL = `https://openweathermap.org/img/wn/${quickPic}@2x.png`
     console.log(quickPicURL)
     $(".quickPic").attr("src",quickPicURL)
     
@@ -88,7 +88,7 @@ function pullData(event){
         ///////////////////////////////////////////////////////
         //pull daily quickPic
         var dailyQuickPic = response.list[i*8].weather[0].icon ;
-        var dailyQuickPicURL = `http://openweathermap.org/img/wn/${dailyQuickPic}@2x.png`
+        var dailyQuickPicURL = `https://openweathermap.org/img/wn/${dailyQuickPic}@2x.png`
         console.log(dailyQuickPicURL)
         var dailyPic = $("<li>")
         dailyPic.addClass("list-group-item")
@@ -118,7 +118,7 @@ function pullData(event){
          ul.append(cardDate,dailyPic,dailyTempEl,dailyHumidEl);
     }
 
-    var indexURL = `http:////api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=4a4e7e38b950e4866fbd81200ca3d5cb`;
+    var indexURL = `https:////api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=4a4e7e38b950e4866fbd81200ca3d5cb`;
     $.ajax({
         url: indexURL,
         method: "GET"
@@ -166,7 +166,7 @@ function onOpenRender(){
 
     localStorage.setItem("mostRecentSearch", cityState);
     // api URL
-    var queryURL =  "http://api.openweathermap.org/data/2.5/forecast?q="+cityState+"&appid=4a4e7e38b950e4866fbd81200ca3d5cb";
+    var queryURL =  "https://api.openweathermap.org/data/2.5/forecast?q="+cityState+"&appid=4a4e7e38b950e4866fbd81200ca3d5cb";
     // Ajax call to API
     $.ajax({
     url: queryURL,
@@ -182,7 +182,7 @@ function onOpenRender(){
    
     var quickPic = response.list[0].weather[0].icon
     console.log(quickPic);
-    var quickPicURL = `http://openweathermap.org/img/wn/${quickPic}@2x.png`
+    var quickPicURL = `https://openweathermap.org/img/wn/${quickPic}@2x.png`
     console.log(quickPicURL)
     $(".quickPic").attr("src",quickPicURL)
     
@@ -226,7 +226,7 @@ function onOpenRender(){
         ///////////////////////////////////////////////////////
         //pull daily quickPic
         var dailyQuickPic = response.list[i*8].weather[0].icon ;
-        var dailyQuickPicURL = `http://openweathermap.org/img/wn/${dailyQuickPic}@2x.png`
+        var dailyQuickPicURL = `https://openweathermap.org/img/wn/${dailyQuickPic}@2x.png`
         console.log(dailyQuickPicURL)
         var dailyPic = $("<li>")
         dailyPic.addClass("list-group-item")
@@ -256,7 +256,7 @@ function onOpenRender(){
          ul.append(cardDate,dailyPic,dailyTempEl,dailyHumidEl);
     }
 
-    var indexURL = `http:////api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=4a4e7e38b950e4866fbd81200ca3d5cb`;
+    var indexURL = `https:////api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=4a4e7e38b950e4866fbd81200ca3d5cb`;
     $.ajax({
         url: indexURL,
         method: "GET"
@@ -344,120 +344,121 @@ $("li").on("click", function(){
     console.log(cityName)
     if(cityName){
         cityState = cityName;
-        var queryURL =  "http://api.openweathermap.org/data/2.5/forecast?q="+cityState+"&appid=4a4e7e38b950e4866fbd81200ca3d5cb";
+        var queryURL =  "https://api.openweathermap.org/data/2.5/forecast?q="+cityState+"&appid=4a4e7e38b950e4866fbd81200ca3d5cb";
         $(".fiveDayCards").empty();
+        //Add City to most recent
+        localStorage.setItem("mostRecentSearch", cityState);
         // Ajax call to API
-    $.ajax({
-    url: queryURL,
-    method: "GET"
-    }).then(function(response) {
-    //log the response from the api
-    console.log(response);
-    //Fill in Data for Main Result Container
-    //fill city and state
-    $(".currentCity").text(`${cityState} ${today}`);
-
-    //grab quick pic
-   
-    var quickPic = response.list[0].weather[0].icon
-    console.log(quickPic);
-    var quickPicURL = `http://openweathermap.org/img/wn/${quickPic}@2x.png`
-    console.log(quickPicURL)
-    $(".quickPic").attr("src",quickPicURL)
-    
-
-    // calculate the temperature (converted from Kelvin)
-    var currentTemp = response.list[0].main.temp;
-    var currentFarTemp = (((currentTemp-273.15)*1.8 +32).toFixed(2));
-    console.log(currentFarTemp);
-    $(".currentTemp").text(currentFarTemp+" °F");
-    //get current wind speed
-    var currentWindSpeed = response.list[0].wind.speed;
-    $(".currentWindSpeed").text(currentWindSpeed+" MPH");
-    console.log(currentWindSpeed);
-    //get humidity
-    var currentHumidity = response.list[0].main.currentHumidity;
-    $(".currentHumidity").text(currentHumidity+"%");
-    //get UV Index ** must get lat and long
-    var lat = response.city.coord.lat;
-    console.log(lat);
-    var lon = response.city.coord.lon;
-    console.log(lon);
-
-    // Fill In 5 Day Forecast
-    //////////////////////////
-    //Fill in Dates
-    for(var i=0;i<5;i++){
-        //loops through dates
-        var dateCalc = moment().add(i,"d");
-        var date = dateCalc.format("L");
-        //create card div
-        var card = $("<div>");
-        card.addClass("card col-lg-2 col-md-4 col-sm-6 m-1 justify-content-center");
-        //create UL
-        var ul = $("<ul>");
-        ul.addClass("list-group list-group-flush");
-        //create date li element
-        var cardDate = $("<li>");
-        cardDate.text(date);
-        cardDate.addClass("list-group-item cardDate");
-        
-        ///////////////////////////////////////////////////////
-        //pull daily quickPic
-        var dailyQuickPic = response.list[i*8].weather[0].icon ;
-        var dailyQuickPicURL = `http://openweathermap.org/img/wn/${dailyQuickPic}@2x.png`
-        console.log(dailyQuickPicURL)
-        var dailyPic = $("<li>")
-        dailyPic.addClass("list-group-item")
-        var dailyPicImg = $("<img>");
-        dailyPicImg.attr("src",dailyQuickPicURL);
-        dailyPic.append(dailyPicImg);
-       
-        //////////////////////////////////////////////////////
-
-        //pull Temperature
-        var dailyTemp = response.list[i*8].main.temp;
-        var dailyFarTemp = (((dailyTemp-273.15)*1.8 +32).toFixed(2));
-        var dailyTempEl = $("<li>");
-        dailyTempEl.addClass("list-group-item");
-        dailyTempEl.text("Temp: "+dailyFarTemp);
-
-        //pull Humditiy
-
-        var dailyHumid = response.list[i*8].main.humidity;
-        var dailyHumidEl = $("<li>");
-        dailyHumidEl.addClass("list-group-item");
-        dailyHumidEl.text("Humdity: "+dailyHumid+"%");
-
-         //append to Dom
-         $(".fiveDayCards").append(card);
-         card.append(ul);
-         ul.append(cardDate,dailyPic,dailyTempEl,dailyHumidEl);
-    }
-
-    var indexURL = `http:////api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=4a4e7e38b950e4866fbd81200ca3d5cb`;
-    $.ajax({
-        url: indexURL,
+        $.ajax({
+        url: queryURL,
         method: "GET"
         }).then(function(response) {
-        //get the UV index
-        console.log(response)
-        var UVIndex = response.value;
-        console.log(UVIndex)
-        $(".currentUVIndex").text(UVIndex)
+        //log the response from the api
+        console.log(response);
+        //Fill in Data for Main Result Container
+        //fill city and state
+        $(".currentCity").text(`${cityState} ${today}`);
 
-        if(UVIndex <=2){
-            $(".currentUVIndex").removeClass("lowIndex medIndex highIndex");
-            $(".currentUVIndex").addClass("lowIndex");
-        }else if (UVIndex >2 && UVIndex <= 7) {
-            $(".currentUVIndex").removeClass("lowIndex medIndex highIndex");
-            $(".currentUVIndex").addClass("medIndex");
-        }else{
-            $(".currentUVIndex").removeClass("lowIndex medIndex highIndex");
-            $(".currentUVIndex").addClass("highIndex");
+        //grab quick pic
+    
+        var quickPic = response.list[0].weather[0].icon
+        console.log(quickPic);
+        var quickPicURL = `https://openweathermap.org/img/wn/${quickPic}@2x.png`
+        console.log(quickPicURL)
+        $(".quickPic").attr("src",quickPicURL)
+        
+
+        // calculate the temperature (converted from Kelvin)
+        var currentTemp = response.list[0].main.temp;
+        var currentFarTemp = (((currentTemp-273.15)*1.8 +32).toFixed(2));
+        console.log(currentFarTemp);
+        $(".currentTemp").text(currentFarTemp+" °F");
+        //get current wind speed
+        var currentWindSpeed = response.list[0].wind.speed;
+        $(".currentWindSpeed").text(currentWindSpeed+" MPH");
+        console.log(currentWindSpeed);
+        //get humidity
+        var currentHumidity = response.list[0].main.currentHumidity;
+        $(".currentHumidity").text(currentHumidity+"%");
+        //get UV Index ** must get lat and long
+        var lat = response.city.coord.lat;
+        console.log(lat);
+        var lon = response.city.coord.lon;
+        console.log(lon);
+
+        // Fill In 5 Day Forecast
+        //////////////////////////
+        //Fill in Dates
+        for(var i=0;i<5;i++){
+            //loops through dates
+            var dateCalc = moment().add(i,"d");
+            var date = dateCalc.format("L");
+            //create card div
+            var card = $("<div>");
+            card.addClass("card col-lg-2 col-md-4 col-sm-6 m-1 justify-content-center");
+            //create UL
+            var ul = $("<ul>");
+            ul.addClass("list-group list-group-flush");
+            //create date li element
+            var cardDate = $("<li>");
+            cardDate.text(date);
+            cardDate.addClass("list-group-item cardDate");
+            
+            ///////////////////////////////////////////////////////
+            //pull daily quickPic
+            var dailyQuickPic = response.list[i*8].weather[0].icon ;
+            var dailyQuickPicURL = `https://openweathermap.org/img/wn/${dailyQuickPic}@2x.png`
+            console.log(dailyQuickPicURL)
+            var dailyPic = $("<li>")
+            dailyPic.addClass("list-group-item")
+            var dailyPicImg = $("<img>");
+            dailyPicImg.attr("src",dailyQuickPicURL);
+            dailyPic.append(dailyPicImg);
+        
+            //////////////////////////////////////////////////////
+
+            //pull Temperature
+            var dailyTemp = response.list[i*8].main.temp;
+            var dailyFarTemp = (((dailyTemp-273.15)*1.8 +32).toFixed(2));
+            var dailyTempEl = $("<li>");
+            dailyTempEl.addClass("list-group-item");
+            dailyTempEl.text("Temp: "+dailyFarTemp);
+
+            //pull Humditiy
+
+            var dailyHumid = response.list[i*8].main.humidity;
+            var dailyHumidEl = $("<li>");
+            dailyHumidEl.addClass("list-group-item");
+            dailyHumidEl.text("Humdity: "+dailyHumid+"%");
+
+            //append to Dom
+            $(".fiveDayCards").append(card);
+            card.append(ul);
+            ul.append(cardDate,dailyPic,dailyTempEl,dailyHumidEl);
         }
+
+        var indexURL = `https:////api.openweathermap.org/data/2.5/uvi?lat=${lat}&lon=${lon}&appid=4a4e7e38b950e4866fbd81200ca3d5cb`;
+        $.ajax({
+            url: indexURL,
+            method: "GET"
+            }).then(function(response) {
+            //get the UV index
+            console.log(response)
+            var UVIndex = response.value;
+            console.log(UVIndex)
+            $(".currentUVIndex").text(UVIndex)
+
+            if(UVIndex <=2){
+                $(".currentUVIndex").removeClass("lowIndex medIndex highIndex");
+                $(".currentUVIndex").addClass("lowIndex");
+            }else if (UVIndex >2 && UVIndex <= 7) {
+                $(".currentUVIndex").removeClass("lowIndex medIndex highIndex");
+                $(".currentUVIndex").addClass("medIndex");
+            }else{
+                $(".currentUVIndex").removeClass("lowIndex medIndex highIndex");
+                $(".currentUVIndex").addClass("highIndex");
+            }
+            });
         });
-    });
-}
     }
-)
+})
