@@ -72,7 +72,7 @@ function pullData(event){
     //Fill in Dates
     for(var i=0;i<5;i++){
         //loops through dates
-        var dateCalc = moment().add(i,"d");
+        var dateCalc = moment().add(i+1,"d");
         var date = dateCalc.format("L");
         //create card div
         var card = $("<div>");
@@ -87,7 +87,7 @@ function pullData(event){
         
         ///////////////////////////////////////////////////////
         //pull daily quickPic
-        var dailyQuickPic = response.list[i*8].weather[0].icon ;
+        var dailyQuickPic = response.list[(i*8)+7].weather[0].icon ; 
         var dailyQuickPicURL = `https://openweathermap.org/img/wn/${dailyQuickPic}@2x.png`
         console.log(dailyQuickPicURL)
         var dailyPic = $("<li>")
@@ -99,7 +99,7 @@ function pullData(event){
         //////////////////////////////////////////////////////
 
         //pull Temperature
-        var dailyTemp = response.list[i*8].main.temp;
+        var dailyTemp = response.list[(i*8)+7].main.temp;
         var dailyFarTemp = (((dailyTemp-273.15)*1.8 +32).toFixed(2));
         var dailyTempEl = $("<li>");
         dailyTempEl.addClass("list-group-item");
@@ -107,7 +107,7 @@ function pullData(event){
 
         //pull Humditiy
 
-        var dailyHumid = response.list[i*8].main.humidity;
+        var dailyHumid = response.list[(i*8)+7].main.humidity;
         var dailyHumidEl = $("<li>");
         dailyHumidEl.addClass("list-group-item");
         dailyHumidEl.text("Humdity: "+dailyHumid+"%");
@@ -210,7 +210,7 @@ function onOpenRender(){
     //Fill in Dates
     for(var i=0;i<5;i++){
         //loops through dates
-        var dateCalc = moment().add(i,"d");
+        var dateCalc = moment().add(i+1,"d");
         var date = dateCalc.format("L");
         //create card div
         var card = $("<div>");
@@ -225,7 +225,7 @@ function onOpenRender(){
         
         ///////////////////////////////////////////////////////
         //pull daily quickPic
-        var dailyQuickPic = response.list[i*8].weather[0].icon ;
+        var dailyQuickPic = response.list[(i*8)+7].weather[0].icon ;
         var dailyQuickPicURL = `https://openweathermap.org/img/wn/${dailyQuickPic}@2x.png`
         console.log(dailyQuickPicURL)
         var dailyPic = $("<li>")
@@ -237,7 +237,7 @@ function onOpenRender(){
         //////////////////////////////////////////////////////
 
         //pull Temperature
-        var dailyTemp = response.list[i*8].main.temp;
+        var dailyTemp = response.list[(i*8)+7].main.temp;
         var dailyFarTemp = (((dailyTemp-273.15)*1.8 +32).toFixed(2));
         var dailyTempEl = $("<li>");
         dailyTempEl.addClass("list-group-item");
@@ -245,7 +245,7 @@ function onOpenRender(){
 
         //pull Humditiy
 
-        var dailyHumid = response.list[i*8].main.humidity;
+        var dailyHumid = response.list[(i*8)+7].main.humidity;
         var dailyHumidEl = $("<li>");
         dailyHumidEl.addClass("list-group-item");
         dailyHumidEl.text("Humdity: "+dailyHumid+"%");
@@ -391,7 +391,7 @@ $("li").on("click", function(){
         //Fill in Dates
         for(var i=0;i<5;i++){
             //loops through dates
-            var dateCalc = moment().add(i,"d");
+            var dateCalc = moment().add(i+1,"d");
             var date = dateCalc.format("L");
             //create card div
             var card = $("<div>");
@@ -406,7 +406,7 @@ $("li").on("click", function(){
             
             ///////////////////////////////////////////////////////
             //pull daily quickPic
-            var dailyQuickPic = response.list[i*8].weather[0].icon ;
+            var dailyQuickPic = response.list[(i*8)+7].weather[0].icon ;
             var dailyQuickPicURL = `https://openweathermap.org/img/wn/${dailyQuickPic}@2x.png`
             console.log(dailyQuickPicURL)
             var dailyPic = $("<li>")
@@ -418,7 +418,7 @@ $("li").on("click", function(){
             //////////////////////////////////////////////////////
 
             //pull Temperature
-            var dailyTemp = response.list[i*8].main.temp;
+            var dailyTemp = response.list[(i*8)+7].main.temp;
             var dailyFarTemp = (((dailyTemp-273.15)*1.8 +32).toFixed(2));
             var dailyTempEl = $("<li>");
             dailyTempEl.addClass("list-group-item");
@@ -426,7 +426,7 @@ $("li").on("click", function(){
 
             //pull Humditiy
 
-            var dailyHumid = response.list[i*8].main.humidity;
+            var dailyHumid = response.list[(i*8)+7].main.humidity;
             var dailyHumidEl = $("<li>");
             dailyHumidEl.addClass("list-group-item");
             dailyHumidEl.text("Humdity: "+dailyHumid+"%");
