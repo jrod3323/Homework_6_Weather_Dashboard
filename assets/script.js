@@ -59,7 +59,7 @@ function pullData(event){
     $(".currentWindSpeed").text(currentWindSpeed+" MPH");
     console.log(currentWindSpeed);
     //get humidity
-    var currentHumidity = response.list[0].main.currentHumidity;
+    var currentHumidity = response.list[0].main.humidity;
     $(".currentHumidity").text(currentHumidity+"%");
     //get UV Index ** must get lat and long
     var lat = response.city.coord.lat;
@@ -197,7 +197,7 @@ function onOpenRender(){
     $(".currentWindSpeed").text(currentWindSpeed+" MPH");
     console.log(currentWindSpeed);
     //get humidity
-    var currentHumidity = response.list[0].main.currentHumidity;
+    var currentHumidity = response.list[0].main.humidity;
     $(".currentHumidity").text(currentHumidity+"%");
     //get UV Index ** must get lat and long
     var lat = response.city.coord.lat;
@@ -378,7 +378,7 @@ $("li").on("click", function(){
         $(".currentWindSpeed").text(currentWindSpeed+" MPH");
         console.log(currentWindSpeed);
         //get humidity
-        var currentHumidity = response.list[0].main.currentHumidity;
+        var currentHumidity = response.list[0].main.humidity;
         $(".currentHumidity").text(currentHumidity+"%");
         //get UV Index ** must get lat and long
         var lat = response.city.coord.lat;
