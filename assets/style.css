@@ -5,6 +5,7 @@ header {
     padding: .5rem;
 }
 
+/* for aside search contain */
 .searchContainer {
     background-color: rgb(235, 230, 230);
     border-radius: 2%;
@@ -12,7 +13,7 @@ header {
     border-style: solid;
     border-width: 1px;
 }
-
+/* five day css */
 .card {
     background-color: blue;
 }
@@ -25,7 +26,7 @@ header {
 .cardDate {
     font-weight: bold;
 }
-
+/* main info css */
 .jumbotron {
     background-color: white;
     border-radius: 1%;
@@ -38,7 +39,7 @@ header {
     height:auto;
     width:auto;
 }
-
+/* UV index classes */
 .lowIndex{
     background-color: green;
 }
@@ -57,11 +58,11 @@ header {
     border-style: solid;
     border-width: 1px;
 }
-
+/* css for jumbotron that shows when there are no recent searches */
 .noInfo {
     text-align: center;
 }
-
+/* adds cursor when hovering over recent search items */
 .cityList li:hover {
     cursor: pointer;
 }
